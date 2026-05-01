@@ -20,10 +20,10 @@ RUN \
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo
 RUN sed -i '1s|python[0-9.]*|python3|' /bin/repo
 
-RUN groupadd intins -g 1000 && \
-        useradd -ms /bin/bash -p intins intins -u 1028 -g 1000 && \
-        usermod -aG sudo intins && \
-        echo "intins:intins" | chpasswd
+RUN groupadd intins -g 138 && \
+    useradd -ms /bin/bash -p intins intins -u 1000 -g 138 && \
+    usermod -aG sudo intins && \
+    echo "intins:intins" | chpasswd
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
@@ -35,4 +35,8 @@ WORKDIR /home/intins
 
 RUN git config --global user.email "nam.dinh@intins.vn" && \
     git config --global user.name "dinhnamuet"
+
+ENV DL_DIR=/home/intins/downloads
+ENV SSTATE_DIR=/home/intins/sstate-cache
+ENV BB_ENV_PASSTHROUGH_ADDITIONS="DL_DIR SSTATE_DIR"
 
