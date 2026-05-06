@@ -12,6 +12,13 @@ RUN \
           g++-multilib libssl-dev:i386 zlib1g-dev:i386 \
           libtool libtool-bin procps python3-distutils pigz socat \
           zstd iproute2 lz4 iputils-ping \
+	  git-lfs python3-pip python3-pexpect python3-git python3-jinja2 \
+	  xz-utils debianutils libsdl1.2-dev pylint bsdmainutils \
+	  libusb-1.0-0 bison flex libegl1-mesa \
+	  libgmp-dev libmpc-dev libyaml-dev \
+	  lrzsz corkscrew cvs subversion mercurial \
+	  nfs-common nfs-kernel-server libarchive-zip-perl \
+	  texi2html libxml2-utils \
           curl libtinfo5 net-tools xterm rsync u-boot-tools unzip zip && \
         rm -rf /var/lib/apt-lists/* && \
         echo "dash dash/sh boolean false" | debconf-set-selections && \
@@ -20,8 +27,8 @@ RUN \
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo
 RUN sed -i '1s|python[0-9.]*|python3|' /bin/repo
 
-RUN groupadd intins -g 138 && \
-    useradd -ms /bin/bash -p intins intins -u 1000 -g 138 && \
+RUN groupadd intins -g 999 && \
+    useradd -ms /bin/bash -p intins intins -u 1000 -g 999 && \
     usermod -aG sudo intins && \
     echo "intins:intins" | chpasswd
 
