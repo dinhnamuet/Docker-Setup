@@ -11,6 +11,8 @@ mkdir -p ${SSTATE_CACHE}
 mkdir -p ${DOWNLOAD_DIR}
 
 docker run -it --rm \
+    --privileged \
+    --network host \
     --device=/dev/kvm:/dev/kvm \
     --device=/dev/net/tun:/dev/net/tun \
     --cap-add NET_ADMIN \

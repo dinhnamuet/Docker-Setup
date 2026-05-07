@@ -18,7 +18,7 @@ RUN \
 	  libgmp-dev libmpc-dev libyaml-dev \
 	  lrzsz corkscrew cvs subversion mercurial \
 	  nfs-common nfs-kernel-server libarchive-zip-perl \
-	  texi2html libxml2-utils \
+	  texi2html libxml2-utils iptables \
           curl libtinfo5 net-tools xterm rsync u-boot-tools unzip zip && \
         rm -rf /var/lib/apt-lists/* && \
         echo "dash dash/sh boolean false" | debconf-set-selections && \
